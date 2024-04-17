@@ -174,6 +174,9 @@ class HomeActivity : AppCompatActivity() {
                 linearLayout.setOnClickListener {view ->
                     var main: View = findViewById(R.id.scroll_main)
                     main.visibility = View.VISIBLE
+                    val searchView: SearchView = findViewById(R.id.search_bar)
+                    searchView.setQuery("", false)
+                    searchView.isIconified = true
                     FetchInformation(element.Key, element.LocalizedName)
                     val inputMethodManager =
                         getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
