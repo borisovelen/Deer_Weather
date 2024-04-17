@@ -112,6 +112,10 @@ class HomeActivity : AppCompatActivity() {
                 return true
             }
         })
+        search_box.setOnCloseListener {
+            findViewById<LinearLayout>(R.id.search_results).removeAllViews()
+            true
+        }
         
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         // Check for location permissions
