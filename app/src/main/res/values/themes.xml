@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.BestWeatherApp" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/start_color</item>
+        <item name="android:statusBarColor">@color/start_color</item>
+    </style>
+
+</resources>
