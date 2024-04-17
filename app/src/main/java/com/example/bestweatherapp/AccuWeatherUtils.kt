@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class AccuWeatherUtils {
     companion object{
         private var ACCU_WEATHER_URL: String = "https://dataservice.accuweather.com/"
-        private val API_KEY: String = "olNOuUqyUke4oivu4PAt1wbcReUcMlNY"
+        private var API_KEY: String = "Y3f9z0xNnA1K8bQnZDWo5Nf1el1JGXWE"
 
         val retrofitBuidler = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())

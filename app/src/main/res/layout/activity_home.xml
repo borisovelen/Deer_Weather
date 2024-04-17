@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/swipe_to_refresh"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -19,6 +25,7 @@
             android:layout_height="match_parent"
             android:scrollbars="none"
             android:overScrollMode="never"
+            android:nestedScrollingEnabled="true"
             android:contentDescription="Main Page">
             <LinearLayout
                 android:id="@+id/mainContainer"
@@ -906,7 +913,8 @@
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="true">
 
                     <LinearLayout
                         android:id="@+id/search_results"
@@ -921,3 +929,5 @@
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

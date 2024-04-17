@@ -75,4 +75,5 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.5.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
     implementation ("io.github.cdimascio:dotenv-kotlin:6.4.1")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 }

@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.bestweatherapp.conditions_scheme.ConditionsCurrentItem
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -34,6 +35,7 @@ class HomeActivity : AppCompatActivity() {
     private var lat: Double = 10.0;
     private var lon: Double = 10.0;
     private lateinit var cityKeyLocation: String
+    private lateinit var pickedLocation: String
     private val iconName = mapOf(
         1 to "sun",
         2 to "sun",
@@ -81,6 +83,14 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        var swipeView: SwipeRefreshLayout = findViewById(R.id.swipe_to_refresh)
+        swipeView.setOnRefreshListener {
+            if(pickedLocation!=null){
+                FetchInformation(pickedLocation, findViewById<TextView>(R.id.Location).text.toString())
+            }
+            swipeView.setRefreshing(false)
+        }
 
         var mainScroll: View = findViewById(R.id.scroll_main)
 
@@ -191,6 +201,7 @@ class HomeActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun FetchInformation(cityKey:String, cityName:String){
+        pickedLocation = cityKey
         AccuWeatherUtils.FetchCondition(cityKey) {responseBody ->
             val body = responseBody.firstOrNull()
             if(body is ConditionsCurrentItem){
