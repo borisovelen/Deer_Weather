@@ -113,7 +113,6 @@ class HomeActivity : AppCompatActivity() {
 
         search_box.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                // Handle the query submission
                 return true
             }
 
@@ -128,14 +127,11 @@ class HomeActivity : AppCompatActivity() {
         }
         
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        // Check for location permissions
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
             ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
         ) {
-            // Permissions already granted, start location updates
             getLocation()
         } else {
-            // Request location permissions if not granted
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(
@@ -156,11 +152,10 @@ class HomeActivity : AppCompatActivity() {
             for((index, element) in cities.withIndex()){
                 val linearLayout = LinearLayout(context)
 
-                // Set LinearLayout properties
                 linearLayout.orientation = LinearLayout.HORIZONTAL
                 val layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, // width
-                    LinearLayout.LayoutParams.WRAP_CONTENT // height
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
                 )
                 linearLayout.layoutParams = layoutParams
                 linearLayout.setPadding(10,10,10,10)
@@ -191,7 +186,6 @@ class HomeActivity : AppCompatActivity() {
                     val inputMethodManager =
                         getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 
-                    // on below line hiding our keyboard.
                     inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0)
                 }
                 parent.addView(linearLayout)
@@ -321,7 +315,6 @@ class HomeActivity : AppCompatActivity() {
     private fun getLocation() {
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
-                // Got last known location. In some rare situations, this can be null.
                 if (location != null) {
                     lat = location.latitude
                     lon = location.longitude
@@ -348,10 +341,8 @@ class HomeActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_LOCATION_PERMISSION) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Location permission granted, start location updates
                 getLocation()
             } else {
-                // Location permission denied, handle accordingly (e.g., show rationale, disable location-related functionality)
                 AccuWeatherUtils.FetchLocation("10,10") {responseBody ->
                     cityKeyLocation = responseBody.Key;
                     FetchInformation(responseBody.Key, responseBody.EnglishName)
